@@ -3,28 +3,27 @@ import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/for
 import { FirebaseService } from '../../services/firebase.service';
 import { User } from '../../models/user.model';
 import { UtilsService } from '../../services/utils.service';
-
-
-
+import { and } from 'firebase/firestore';
+import { identity } from 'rxjs';
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.page.html',
-  styleUrls: ['./auth.page.scss'],
+  selector: 'app-auth2',
+  templateUrl: './auth2.page.html',
+  styleUrls: ['./auth2.page.scss'],
 })
-export class AuthPage implements OnInit {
-
+export class Auth2Page implements OnInit {
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
   form = new FormGroup({
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    identi: new FormControl('alumno', [Validators.required]),
   })
 
   ngOnInit() {
   }
 
+
+  
   async submit() {
     console.log(this.form.value);
     
@@ -33,6 +32,9 @@ export class AuthPage implements OnInit {
     await loading.present();
 
    
+//Validacion de usuario
+
+
       this.firebaseSvc.singIn(this.form.value as User).then(res => {
 
 
@@ -41,7 +43,7 @@ export class AuthPage implements OnInit {
         let uid = res.user.uid;
         this.form.controls.uid.setValue(uid);
         console.log(res);
-        this.getUserInfo(uid)
+        this.getUserInfo(uid);
 
       }).catch(error => {
         console.log(error);
@@ -70,13 +72,14 @@ export class AuthPage implements OnInit {
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      let path = `user/${udi}`;
+      let path = `users1/${udi}`;
 
       this.firebaseSvc.getDocument(path).then((user: User) => {
         
-        this.utilsSvc.saveFromLocalStorage('user', user);
+        this.utilsSvc.saveFromLocalStorage('users1', user);
         console.log(user)
-        this.utilsSvc.routerLink('home1');
+
+        this.utilsSvc.routerLink('home2');
 
         this.form.reset();
 

@@ -1,17 +1,17 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { EmailValidator, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FirebaseService } from '../../services/firebase.service';
-import { User } from '../../models/user.model';
-import { UtilsService } from '../../services/utils.service';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FirebaseService } from '../../../services/firebase.service';
+import { User } from '../../../models/user.model';
+import { UtilsService } from '../../../services/utils.service';
 
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.page.html',
-  styleUrls: ['./auth.page.scss'],
+  selector: 'app-sing-up',
+  templateUrl: './sing-up.page.html',
+  styleUrls: ['./sing-up.page.scss'],
 })
-export class AuthPage implements OnInit {
+export class SingUpPage implements OnInit {
+
 
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService);
@@ -19,7 +19,7 @@ export class AuthPage implements OnInit {
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    identi: new FormControl('alumno', [Validators.required]),
+    name: new FormControl('alumno', [Validators.required, Validators.minLength(5)]),
   })
 
   ngOnInit() {
@@ -27,21 +27,23 @@ export class AuthPage implements OnInit {
 
   async submit() {
     console.log(this.form.value);
-    
+
     if (this.form.valid) {
-    const loading = await this.utilsSvc.loading();
-    await loading.present();
 
-   
-      this.firebaseSvc.singIn(this.form.value as User).then(res => {
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
 
+      this.firebaseSvc.singUp(this.form.value as User).then(async res => {
 
-        this.firebaseSvc.updateUser(this.form.value.uid);
-        
+        await this.firebaseSvc.updateUser(this.form.value.name);
+
         let uid = res.user.uid;
         this.form.controls.uid.setValue(uid);
-        console.log(res);
-        this.getUserInfo(uid)
+
+        this.setUserInfo(uid)
+
+
+        // console.log(res);
 
       }).catch(error => {
         console.log(error);
@@ -61,7 +63,7 @@ export class AuthPage implements OnInit {
   }
 
 
-  async getUserInfo(udi: string) {
+  async setUserInfo(udi: string) {
     console.log(this.form.value);
 
 
@@ -70,23 +72,17 @@ export class AuthPage implements OnInit {
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      let path = `user/${udi}`;
+      let path = `user/${udi}`
+      delete this.form.value.password;
 
-      this.firebaseSvc.getDocument(path).then((user: User) => {
-        
-        this.utilsSvc.saveFromLocalStorage('user', user);
-        console.log(user)
+      this.firebaseSvc.setDocument(path, this.form.value).then(async res => {
+
+        this.utilsSvc.saveFromLocalStorage('user', this.form.value);
         this.utilsSvc.routerLink('home1');
 
         this.form.reset();
 
-        this.utilsSvc.presentToast({
-          message: `Bienvenido a tu plataforma: ${user.name}`,
-          duration: 2500,
-          color: 'primary',
-          position: 'middle',
-          icon: 'alert-circle-outline'
-        })
+        this.utilsSvc.saveInLocalStorage('user', this.form.value)
 
       }).catch(error => {
         console.log(error);

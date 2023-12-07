@@ -1,0 +1,17 @@
+{
+    "bienvenido" : "Bienvenido",
+    "selecciona" : "Selecciona",
+    "perfil" : "Perfil",
+    "curso" : "Curso",
+    "escaner" : "Escaner",
+    "mapa" : "Mapa",
+    "generar qr" : "Generar QR",
+    "correo" : "Correo",
+    "contraseña" : "Contraseña",
+    "login" : "Login",
+    "registrarse" : "Registrarse",
+    "alumno detalle" : "Alumno Detalle",
+    "profesor" : "Profesor",
+    "alumnos" : "Alumnos",
+    "escanear qr" : "Escanear QR"
+}

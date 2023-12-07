@@ -1,0 +1,17 @@
+{
+    "bienvenido" : "Добро пожаловать",
+    "selecciona" : "Выбирать",    
+    "perfil" : "профиль",
+    "curso" : "оценка",
+    "escaner" : "сканер",
+    "mapa" : "карта",
+    "generar qr" : "сгенерировать qr",
+    "correo" : "почта",
+    "contraseña" : "пароль",
+    "login" : "авторизоваться",
+    "registrarse" : "регистрироваться",
+    "alumno detalle" : "студенческая деталь",
+    "profesor" : "профессор",
+    "alumnos" : "ученики",
+    "escanear qr" : "сканирование qr"
+}

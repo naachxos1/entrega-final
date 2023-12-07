@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="retroceder()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Título de la Página
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form FormGroup="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+    <!--/////////////////// Name////////////////////////-->
+          <app-custom-input 
+          autocomplete="name" 
+          [control]="form.controls.name" 
+          type="text" label="Titulo">
+      </app-custom-input>
+         
+          <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched"></div>
+          <div *ngIf="form.controls.name.errors?.['required']">Se Necesita un Titulo</div>  
+
+
+              <!--///////////////////vistas Mensaje////////////////////////-->
+              <app-custom-input 
+              [control]="form.controls.mensaje" 
+              type="text" label="mensaje">
+          </app-custom-input>
+
+
+              <!--///////////////////vistas Imagen////////////////////////-->
+
+            <ion-avatar class="imagen-base" *ngIf="form.value.imagen">
+              <img [src]="form.value.imagen"/>
+            </ion-avatar>
+ <!--////vistas Imagen/////-->
+
+            <ion-icon *ngIf="!form.value.imagen" name="image-outline"></ion-icon>
+
+
+              <!--///////////////////Button Imagen////////////////////////-->
+          <ion-button (click)="takeImage()" expand="block"  shape="round">
+            Seleccionar o tomar una Imagen
+          </ion-button> 
+           
+    
+            <!--/////////////////// Botones de Acceso ////////////////////////-->
+    
+    
+            <ion-button expand="block" mode="ios" class="submit" type="submit"  > <!--[disabled]="form.invalid"-->
+              Enviar<ion-icon slot="end" name="person-add-outline"></ion-icon>
+         </ion-button> 
+    
+        <!--{{form.value.email}}-->
+        {{form.value | json}}
+        </form>
+</ion-content>
