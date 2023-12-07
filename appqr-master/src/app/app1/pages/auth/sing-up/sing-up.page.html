@@ -1,0 +1,60 @@
+<app-header title="Registro"></app-header>
+
+<ion-content>
+<div class="d-flex-center">
+    <form FormGroup="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+<!--/////////////////// Name////////////////////////-->
+      <app-custom-input 
+      autocomplete="name" 
+      icon="person-outline" 
+      [control]="form.controls.name" 
+      type="text" label="Nombre">
+  </app-custom-input>
+     
+      <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched"></div>
+      <div *ngIf="form.controls.name.errors?.['required']">Se Necesita un Nombre Valido!</div> 
+      <div *ngIf="form.controls.name.errors?.['minlenght']">El nombre debe tener Minimo 25 Caracteres</div>    
+
+
+      <!--/////////////////// Email ////////////////////////-->
+        <app-custom-input 
+        autocomplete="email" 
+        icon="mail-outline" 
+        [control]="form.controls.email" 
+        type="email" label="Correo">
+    </app-custom-input>
+       
+        <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched"></div>
+        <div *ngIf="form.controls.email.errors?.['required']">Se Necesita email Valido!</div> 
+        <div *ngIf="form.controls.email.errors?.['email']">Se Necesita email!</div>    
+  
+
+<!--/////////////////// Password ////////////////////////-->
+        <app-custom-input 
+        icon="lock-closed-outline" 
+        [control]="form.controls.password" 
+        label="Contraseña" type="password">      
+        </app-custom-input> 
+        
+        <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched"></div>
+        <div *ngIf="form.controls.password.errors?.['required']">Se Necesita Contraseña!</div>   
+
+
+        <!--/////////////////// Botones de Acceso ////////////////////////-->
+
+
+        <ion-button expand="block" mode="ios" class="submit" type="submit" [disabled]="form.invalid" > <!--[disabled]="form.invalid"-->
+          Registrate<ion-icon slot="end" name="person-add-outline"></ion-icon>
+     </ion-button> 
+
+    <!--{{form.value.email}}-->
+    
+    <!--{{form.value | json}}-->
+    </form>
+</div>
+
+
+
+</ion-content>
+

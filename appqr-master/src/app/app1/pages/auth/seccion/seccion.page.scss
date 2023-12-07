@@ -1,0 +1,77 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #333; 
+  }
+  
+
+  ion-card {
+    width: 80%;
+    max-width: 400px;
+    margin: 10px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  ion-card:hover {
+    transform: scale(1.05);
+  }
+  
+  ion-img {
+    max-height: 200px; 
+    object-fit: cover; 
+  }
+
+  ion-card-header {
+    background-color: #3880ff;
+    color: white;
+    text-align: center;
+  }
+  
+
+  ion-card-content {
+    padding: 15px;
+  }
+  
+
+  ion-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+
+  ion-card-content a {
+    color: #3880ff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+
+  ion-card-content a:hover {
+    color: #0044cc;
+  }
+  
+
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #3880ff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .floating-button:hover {
+    background-color: #0044cc;
+  }
+  

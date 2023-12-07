@@ -1,0 +1,7 @@
+{
+  "name": "appqr",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

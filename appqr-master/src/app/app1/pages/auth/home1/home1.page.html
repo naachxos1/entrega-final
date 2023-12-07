@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <!-- Botón de salida en el lado izquierdo de la barra de navegación -->
+      <ion-button (click)="singOut()">
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>Salir
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      DuocQR
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu id="container " contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <br>
+        <ion-item  style="text-align: center;">
+          <ion-avatar >
+            <img [src]="user()?.imagen" />
+          </ion-avatar>
+          <ion-label style="font-size: 25px; font-weight: bold;">{{user().name}}</ion-label>
+        </ion-item>      
+      <br>
+      <div class="ion-padding" style="font-size: 20px; font-weight: bold; text-align: center;">DuocQR</div>
+      <ion-button (click)="profile()" expand="block">Perfil</ion-button>
+      <ion-button (click)="ListaSec()" expand="block">List y Seccion</ion-button>
+      <ion-button  (click)="noticias()" expand="block">noticias Duoc</ion-button>
+      <ion-button (click)="Scaner()" expand="block">Escanear</ion-button>
+    
+    </ion-toolbar>
+
+  </ion-header>
+
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-content class="ion-padding">DuocQR</ion-content>
+    </ion-toolbar>
+  </ion-header>
+</div>
+
+
+
+
+<ion-content >
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+      <ion-card *ngFor="let m of mensajes">
+        <!-- Título de la card -->
+        <ion-card-header>
+          <div class="name" style="text-align: left; font-size: 25px; font-weight: bold;"><h2>{{m.name}}</h2></div>
+          <div class="name" style="text-align: right; font-size: 18px; font-weight: bold;"><h5>Enviado por: {{user?.name}}</h5></div>
+        </ion-card-header>
+    
+        <!-- Contenido de la card -->
+        <ion-card-content>
+          <!-- Mensaje en el medio -->
+          <div class="name" style="text-align: center; font-size: 25px; font-weight: bold;">{{m.mensaje}}</div>
+    
+          <!-- Imagen -->
+          <ion-img [src]="m.imagen" alt="Avatar"></ion-img>
+        </ion-card-content>
+      </ion-card>
+
+  
+
+</ion-content>
+  
+ 
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="profile()">
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+    <ion-button (click)="Mapa()">
+      <ion-icon slot="icon-only" name="map-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="Scaner()">
+      <ion-icon slot="icon-only" name="scan-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="crudsAU()">
+      <ion-icon slot="icon-only" name="add-circle-outline" ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>DuocQR</ion-title>
+</ion-toolbar>

@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="retroceder()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Título de la Página
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form FormGroup="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+    <!--/////////////////// Name////////////////////////-->
+          <app-custom-input 
+          autocomplete="name_seccion" 
+          [control]="form.controls.name_seccion" 
+          type="text" label="Nombre Seccion">
+      </app-custom-input>
+         
+          <div class="validators" *ngIf="form.controls.name_seccion.errors && form.controls.name_seccion.touched"></div>
+          <div *ngIf="form.controls.name_seccion.errors?.['required']">Se Necesita una Seccion</div>  
+
+
+  <!--/////////////////// Name////////////////////////-->
+  <app-custom-input 
+  autocomplete="name_profesor" 
+  [control]="form.controls.name_profesor" 
+  type="text" label="Nombre Profesor">
+</app-custom-input>
+ 
+  <div class="validators" *ngIf="form.controls.name_profesor.errors && form.controls.name_profesor.touched"></div>
+  <div *ngIf="form.controls.name_profesor.errors?.['required']">Se Necesita un Profesor</div>  
+
+
+
+    <!--/////////////////// Name////////////////////////-->
+    <app-custom-input 
+    autocomplete="name_alumnos1" 
+    [control]="form.controls.name_alumnos1" 
+    type="text" label="Nombre Alumno">
+</app-custom-input>
+
+
+      <!--/////////////////// Name////////////////////////-->
+      <app-custom-input 
+      autocomplete="nname_alumnos2" 
+      [control]="form.controls.name_alumnos2" 
+      type="text" label="Nombre Alumno">
+  </app-custom-input>
+
+        <!--/////////////////// Name////////////////////////-->
+        <app-custom-input 
+        autocomplete="name_alumnos3" 
+        [control]="form.controls.name_alumnos3" 
+        type="text" label="Nombre Alumno">
+    </app-custom-input>
+
+
+
+          <!--/////////////////// Name////////////////////////-->
+          <app-custom-input 
+          autocomplete="name_alumnos4" 
+          [control]="form.controls.name_alumnos4" 
+          type="text" label="Nombre Alumno">
+      </app-custom-input>
+
+
+
+            <!--/////////////////// Name////////////////////////-->
+            <app-custom-input 
+            autocomplete="name_alumnos5" 
+            [control]="form.controls.name_alumnos5" 
+            type="text" label="Nombre Alumno">
+        </app-custom-input>
+           
+
+
+            <!--/////////////////// Botones de Acceso ////////////////////////-->
+    
+    
+            <ion-button expand="block" mode="ios" class="submit" type="submit"  > <!--[disabled]="form.invalid"-->
+              Enviar<ion-icon slot="end" name="person-add-outline"></ion-icon>
+         </ion-button> 
+    
+        <!--{{form.value.email}}-->
+        {{form.value | json}}
+        </form>
+</ion-content>
