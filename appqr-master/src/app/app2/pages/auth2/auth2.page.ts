@@ -72,11 +72,11 @@ export class Auth2Page implements OnInit {
       const loading = await this.utilsSvc.loading();
       await loading.present();
 
-      let path = `users1/${udi}`;
+      let path = `users/${udi}`;
 
       this.firebaseSvc.getDocument(path).then((user: User) => {
         
-        this.utilsSvc.saveFromLocalStorage('users1', user);
+        this.utilsSvc.saveFromLocalStorage('users', user);
         console.log(user)
 
         this.utilsSvc.routerLink('home2');

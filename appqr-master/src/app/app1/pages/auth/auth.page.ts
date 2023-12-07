@@ -18,8 +18,7 @@ export class AuthPage implements OnInit {
   form = new FormGroup({
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-    identi: new FormControl('alumno', [Validators.required]),
+    password: new FormControl('', [Validators.required])
   })
 
   ngOnInit() {

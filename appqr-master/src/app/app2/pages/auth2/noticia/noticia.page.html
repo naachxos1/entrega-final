@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
+    <ion-buttons slot="end">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
@@ -29,3 +29,43 @@
   <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
 </div>
 
+
+
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let s of secciones">
+      <ion-label>
+        <div class="name"><h1>{{s.name}}</h1></div>
+      </ion-label>
+      <br>
+      <ion-label>
+        <div class="name">{{s.mensaje}}</div>
+      </ion-label>
+
+
+
+    </ion-item-sliding>
+  
+  </ion-list>
+  
+
+</ion-content>
+
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button (click)="profile()">
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+    <ion-button (click)="crudsAU1()">
+      <ion-icon slot="icon-only" name="search" ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button>
+      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>

@@ -19,7 +19,8 @@ export class SingUpPage implements OnInit {
     uid: new FormControl(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
-    name: new FormControl('alumno', [Validators.required, Validators.minLength(5)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    identi: new FormControl('alumno'),
   })
 
   ngOnInit() {
